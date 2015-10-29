@@ -19,18 +19,6 @@ node default {
   require ::standard_env
   include ::standard_env::tools::cucumber
 
-  include ::borrower_frontend
-  include ::conveyancer_frontend
-
-  include ::case_api
-  include ::deed_api
-  include ::scribe
-  include ::verifudge
-  include ::catalogue
-  include ::matching_service
-
-  include ::govuk_flask_skeleton
-
   service { 'firewalld':
     ensure => 'stopped',
   }

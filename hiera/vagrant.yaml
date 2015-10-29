@@ -5,13 +5,3 @@
 #
 # borrower_frontend::branch_or_revision: 'my-awesome-feature'
 #
-borrower_frontend::branch_or_revision: 'master'
-conveyancer_frontend::branch_or_revision: 'master'
-
-case_api::branch_or_revision: 'master'
-deed_api::branch_or_revision: 'master'
-scribe::branch_or_revision: 'master'
-verifudge::branch_or_revision: 'master'
-catalogue::branch_or_revision: 'master'
-
-govuk_frontend_skeleton::branch_or_revision: 'master'
