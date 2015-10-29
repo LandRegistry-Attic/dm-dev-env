@@ -21,5 +21,7 @@ node default {
 
   service { 'firewalld':
     ensure => 'stopped',
+
+    include::api_skeleton
   }
 }
