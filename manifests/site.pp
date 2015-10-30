@@ -19,7 +19,7 @@ node default {
   require ::standard_env
   include ::standard_env::tools::cucumber
 
-  include::api_skeleton
+  include ::api_skeleton
 
   service { 'firewalld':
     ensure => 'stopped',
