@@ -5,5 +5,4 @@
 #
 # borrower_frontend::branch_or_revision: 'my-awesome-feature'
 #
-
-api_skeleton::branch_or_revision: 'master'
+deed_api::branch_or_revision: 'master'

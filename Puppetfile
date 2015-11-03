@@ -3,7 +3,7 @@ forge 'https://forgeapi.puppetlabs.com'
 mod 'LandRegistry/standard_env',
     git: 'git://github.com/LandRegistry/standard-env'
 
-mod 'LandRegistry/api_skeleton',
-        git: 'git://github.com/LandRegistry/dm-api-skeleton',
+mod 'LandRegistry/deed_api',
+        git: 'git://github.com/LandRegistry/dm-deed-api',
         ref: 'master',
-        path: 'puppet/api_skeleton'
+        path: 'puppet/deed_api'

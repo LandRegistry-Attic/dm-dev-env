@@ -18,8 +18,8 @@ if versioncmp($::puppetversion,'3.6.1') >= 0 {
 node default {
   require ::standard_env
   include ::standard_env::tools::cucumber
-  include ::api_skeleton
-
+  include ::deed_api
+  
   service { 'firewalld':
     ensure => 'stopped',
   }
