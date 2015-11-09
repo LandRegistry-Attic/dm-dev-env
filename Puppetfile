@@ -5,5 +5,5 @@ mod 'LandRegistry/standard_env',
 
 mod 'LandRegistry/deed_api',
         git: 'git://github.com/LandRegistry/dm-deed-api',
-        ref: 'us6-title-no-to-deed',
+        ref: 'develop',
         path: 'puppet/deed_api'

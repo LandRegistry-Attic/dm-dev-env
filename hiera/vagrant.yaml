@@ -5,4 +5,4 @@
 #
 # borrower_frontend::branch_or_revision: 'my-awesome-feature'
 #
-deed_api::branch_or_revision: 'us6-title-no-to-deed'
+deed_api::branch_or_revision: 'develop'
