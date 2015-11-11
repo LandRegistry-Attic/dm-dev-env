@@ -7,3 +7,8 @@ mod 'LandRegistry/deed_api',
         git: 'git://github.com/LandRegistry/dm-deed-api',
         ref: 'develop',
         path: 'puppet/deed_api'
+
+mod 'LandRegistry/borrower-frontend',
+        git: 'git://github.com/LandRegistry/dm-borrower-frontend',
+        ref: 'develop',
+        path: 'puppet/borrower-frontend'
