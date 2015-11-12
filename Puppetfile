@@ -10,5 +10,5 @@ mod 'LandRegistry/deed_api',
 
 mod 'LandRegistry/borrower_frontend',
         git: 'git://github.com/LandRegistry/dm-borrower-frontend',
-        ref: 'US20-borrower-frontend',
+        ref: 'develop',
         path: 'puppet/borrower_frontend'
