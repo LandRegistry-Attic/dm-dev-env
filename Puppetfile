@@ -13,7 +13,7 @@ mod 'LandRegistry/borrower_frontend',
         ref: 'develop',
         path: 'puppet/borrower_frontend'
 
-mod 'LandRegistry/scribe_api',
-        git: 'git://github.com/LandRegistry/dm-scribe-api',
+mod 'LandRegistry/esec_client',
+        git: 'git://github.com/LandRegistry/dm-esec-client',
         ref: 'develop',
-        path: 'puppet/scribe_api'
+        path: 'puppet/esec_client'
