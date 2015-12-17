@@ -6,3 +6,4 @@
 #
 borrower_frontend::branch_or_revision: 'develop'
 deed_api::branch_or_revision: 'develop'
+scribe_api::branch_or_revision: 'develop'

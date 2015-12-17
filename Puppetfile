@@ -12,3 +12,8 @@ mod 'LandRegistry/borrower_frontend',
         git: 'git://github.com/LandRegistry/dm-borrower-frontend',
         ref: 'develop',
         path: 'puppet/borrower_frontend'
+
+mod 'LandRegistry/scribe_api',
+        git: 'git://github.com/LandRegistry/dm-scribe-api',
+        ref: 'develop',
+        path: 'puppet/scribe_api'
