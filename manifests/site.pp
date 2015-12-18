@@ -20,6 +20,7 @@ node default {
   include ::standard_env::tools::cucumber
   include ::deed_api
   include ::borrower_frontend
+  include ::esec_client
 
   service { 'firewalld':
     ensure => 'stopped',
