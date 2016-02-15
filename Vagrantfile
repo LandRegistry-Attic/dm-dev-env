@@ -23,6 +23,15 @@ Vagrant.configure(2) do |config|
   config.dns.tld = 'dev.service.gov.uk'
   config.dns.patterns = [/^.*dev.service.gov.uk$/]
 
+  config.ssh.private_key_path = [ '~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa' ]
+  config.ssh.forward_agent = true
+
+  config.vm.provision "shell", inline: <<-SHELL
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+  SHELL
+
   config.vm.box = "landregistry/dev-env-nopost"
   config.vm.box_version = "0.0.1"
   config.vm.provision :puppet do |puppet|

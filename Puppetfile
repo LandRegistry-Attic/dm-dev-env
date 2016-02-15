@@ -14,6 +14,6 @@ mod 'LandRegistry/borrower_frontend',
         path: 'puppet/borrower_frontend'
 
 mod 'LandRegistry/esec_client',
-        git: 'git://github.com/LandRegistry/dm-esec-client',
+        git: 'git@github.com:LandRegistry/dm-esec-client.git',
         ref: 'develop',
         path: 'puppet/esec_client'
