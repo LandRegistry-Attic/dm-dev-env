@@ -1,6 +1,6 @@
 # dev-vm - The VM for developers
 
-This is a full featured Developer VM, built by the Charges Team for the Charges Team.
+This is a full featured Developer VM, built by the Digital Mortgage Team for the Digital Mortgage Team.
 
 **Table of contents**
 - [Philosophy](#philosophy)
@@ -11,12 +11,8 @@ This is a full featured Developer VM, built by the Charges Team for the Charges 
 - [Usage](#usage)
 - [Apps installed](#apps-installed)
     - [Borrower Frontend](#borrower-frontend)
-    - [Conveyancer Frontend](#conveyancer-frontend)
     - [Deed API](#deed-api)
-    - [Case API](#case-api)
-    - [Scribe](#scribe)
-    - [Verifudge](#verifudge)
-    - [Catalogue](#catalogue)
+    - [E-Security Client](#e-security-client)
 - [Development usage](#development-usage)
     - [Development path](#development-path)
     - [Controlling apps](#controlling-apps)
@@ -59,11 +55,11 @@ infrastructure code.
 ### In practice
 
 - Every app has it's own repo
-    - example: [charges-borrower-frontend](https://github.com/LandRegistry/charges-borrower-frontend)
+    - example: [dm-borrower-frontend](https://github.com/LandRegistry/dm-borrower-frontend)
 - Infrastructure code to deploy an app exists in it's repo in `/puppet/<app_name>`
-    - example: [charges-borrower-frontend/puppet/borrower_frontend](https://github.com/LandRegistry/charges-borrower-frontend/tree/master/puppet/borrower_frontend)
+    - example: [dm-borrower-frontend/puppet/borrower_frontend](https://github.com/LandRegistry/dm-borrower-frontend/tree/master/puppet/borrower_frontend)
 - Infrastructure code for each app is pulled in to the Dev VM through Librarian-Puppet
-    - example: [the Dev VM Puppetfile](https://github.com/LandRegistry/dev-vm/blob/master/Puppetfile)
+    - example: [the Dev VM Puppetfile](https://github.com/LandRegistry/dm-dev-env/blob/master/Puppetfile)
 
 ## README conventions
 
@@ -103,61 +99,57 @@ postgres@dev-vm > [some command]
 You should have Vagrant and Virtualbox. Easiest way is through `homebrew-cask`:
 
 Install `homebrew-cask`:
-
 ```
 > brew install caskroom/cask/brew-cask
 ```
 
 Then install the Vagrant and Virtualbox:
-
 ```
 > brew cask install vagrant
 > brew cask install virtualbox
 ```
 
 You'll also need a few ruby gems installed:
-
 ```
 > gem install puppet
 > gem install librarian-puppet
 ```
 
 We use a few plugins in the Dev VM you should install first:
-
 ```
 > vagrant plugin install vagrant-dns
 > vagrant plugin install vagrant-cachier
 ```
 
 Then start the vagrant dns plugin:
-
 ```
 > vagrant dns --install
+```
+
+Then add your keys to the SSH agent to be able to clone the private repos:
+```
+> ssh-add
 ```
 
 ## Usage
 
 First clone the repo:
-
 ```
-> git clone git@github.com:LandRegistry/dev-vm.git
+> git clone git@github.com:LandRegistry/dm-dev-env.git
 ```
 
-Then install the dependencies:
-
+Then install the puppet dependencies:
 ```
 > librarian-puppet install
 ```
 
 Add an environment variable that points at your development folder (e.g. mine is
-in `~/Projects/land-registry/charges`) to your `~/.bashrc` or `~/.zshrc`:
-
+in `~/Projects/land-registry/digital-mortgage`) to your `~/.bashrc` or `~/.zshrc`:
 ```
 > echo "export development=/path/to/your/code" >> ~/.zshrc
 ```
 
 And finally you can start the VM:
-
 ```
 > vagrant up
 ```
@@ -176,95 +168,47 @@ reading logs, you can through [systemd and journalctl](#controlling-apps).
  Piece               | Location
 ---------------------|------------------------------------------------------------------------------------
  App name            | borrower_frontend
- Code                | [charges-borrower-frontend](https://github.com/LandRegistry/charges-borrower-frontend)
- Infrastructure code | [charges-borrower-frontend/puppet/borrower_frontend](https://github.com/LandRegistry/charges-borrower-frontend/tree/master/puppet/borrower_frontend)
+ Code                | [dm-borrower-frontend](https://github.com/LandRegistry/dm-borrower-frontend)
+ Infrastructure code | [dm-borrower-frontend/puppet/borrower_frontend](https://github.com/LandRegistry/dm-borrower-frontend/tree/develop/puppet/borrower_frontend)
  Development Host    | http://borrower-frontend.dev.service.gov.uk
  Code on VM          | /opt/borrower_frontend
- Default port        | 0.0.0.0:9000
-
-### Conveyancer Frontend
-
- Piece               | Location
----------------------|------------------------------------------------------------------------------------
- App name            | conveyancer_frontend
- Code                | [charges-conveyancer-frontend](https://github.com/LandRegistry/charges-conveyancer-frontend)
- Infrastructure code | [charges-conveyancer-frontend/puppet/borrower_frontend](https://github.com/LandRegistry/charges-conveyancer-frontend/tree/master/puppet/conveyancer_frontend)
- Development Host    | http://conveyancer-frontend.dev.service.gov.uk
- Code on VM          | /opt/conveyancer_frontend
- Default port        | 0.0.0.0:9040
+ Default port        | 0.0.0.0:9020
 
 ### Deed API
 
  Piece               | Location
 ---------------------|------------------------------------------------------------------------------------
  App name            | deed_api
- Code                | [charges-deed-api](https://github.com/LandRegistry/charges-deed-api)
- Infrastructure code | [charges-deed-api/puppet/deed_api](https://github.com/LandRegistry/charges-deed-api/tree/master/puppet/deed_api)
+ Code                | [dm-deed-api](github.com/LandRegistry/dm-deed-api)
+ Infrastructure code | [dm-deed-api/puppet/deed_api](https://github.com/LandRegistry/dm-deed-api/tree/master/puppet/deed_api)
  Development Host    | http://deedapi.dev.service.gov.uk
  Code on VM          | /opt/deed_api
- Default port        | 0.0.0.0:9012
+ Default port        | 0.0.0.0:9030
 
-### Case API
-
- Piece               | Location
----------------------|------------------------------------------------------------------------------------
- App name            | case_api
- Code                | [charges-case-api](https://github.com/LandRegistry/charges-case-api)
- Infrastructure code | [charges-case-api/puppet/case_api](https://github.com/LandRegistry/charges-case-api/tree/master/puppet/case_api)
- Development Host    | http://case-api.dev.service.gov.uk
- Code on VM          | /opt/case_api
- Default port        | 0.0.0.0:9070
-
-### Scribe
+### E-Security Client
 
  Piece               | Location
 ---------------------|------------------------------------------------------------------------------------
- App name            | scribe
- Code                | [charges-scribe](https://github.com/LandRegistry/charges-scribe)
- Infrastructure code | [charges-scribe/puppet/scribe](https://github.com/LandRegistry/charges-scribe/tree/master/puppet/scribe)
- Development Host    | http://scribeapi.dev.service.gov.uk
- Code on VM          | /opt/scribe
- Default port        | 0.0.0.0:9010
+ App name            | esec_client
+ Code                | [dm-esec-client](https://github.com/LandRegistry/dm-esec-client)
+ Infrastructure code | [dm-esec-client/puppet/esec_client](https://github.com/LandRegistry/dm-esec-client/tree/develop/puppet/esec_client)
+ Development Host    | http://esec_client.dev.service.gov.uk
+ Code on VM          | /opt/esec_client
+ Default port        | 0.0.0.0:9040
 
-### Verifudge
+ > NOTE: In order to use E-Security Client which is a private repository you will need to link you machines ssh client with the VM's ssh client.
+ 1. You will need to have been given access to the [repository](github.com/LandRegistry/dm-deed-api)
+ 2. You can do this by running ```ssh-add``` on your local machine, this will pick up you id_rsa that you added to github for secure connections and add it to the ssh-agent.
 
- Piece               | Location
----------------------|------------------------------------------------------------------------------------
- App name            | verifudge
- Code                | [charges-verifudge](https://github.com/LandRegistry/charges-verifudge)
- Infrastructure code | [charges-verifudge/puppet/verifudge](https://github.com/LandRegistry/charges-verifudge/tree/master/puppet/verifudge)
- Development Host    | http://verifudge.dev.service.gov.uk
- Code on VM          | /opt/verifudge
- Default port        | 0.0.0.0:9080
+ > Now when you run ```vagrant up```/```vagrant provision``` it will link the agents and the service will then be able to clone E-Security client.
 
-### Catalogue
-
-  Piece               | Location
- ---------------------|------------------------------------------------------------------------------------
-  App name            | catalogue
-  Code                | [charges-catalogue](https://github.com/LandRegistry/charges-catalogue)
-  Infrastructure code | [charges-catalogue/puppet/catalogue](https://github.com/LandRegistry/charges-catalogue/tree/master/puppet/catalogue)
-  Development Host    | http://catalogue.dev.service.gov.uk
-  Code on VM          | /opt/catalogue
-  Default port        | 0.0.0.0:9100
-
-### Matching Service
-
-  Piece               | Location
- ---------------------|------------------------------------------------------------------------------------
-  App name            | catalogue
-  Code                | [charges-matching-service](https://github.com/LandRegistry/charges-matching-service)
-  Infrastructure code | [charges-matching-service/puppet/matching_service](https://github.com/LandRegistry/charges-matching-service/tree/master/puppet/matching_service)
-  Development Host    | http://matching-service.dev.service.gov.uk
-  Code on VM          | /opt/matching_service
-  Default port        | 0.0.0.0:9090
-
-##Development usage
+## Development usage
 
 ### Development path
 
 The VM uses rsync to mirror the path you set when installing:
-```bash
+```
+bash
 > export development=/path/to/your/code
 ```
 
@@ -295,9 +239,9 @@ tables above and action is any of `start`, `stop`, `restart`.
 
 To start the Borrower Frontend use: `sudo systemctl start -u borrower_frontend`
 
-To stop the Verifudge use: `sudo systemctl stop -u verifudge`
+To stop the Borrower Frontend use: `sudo systemctl stop -u borrower_frontend`
 
-To restart the Case API use: `sudo systemctl restart -u case_api`
+To restart the Borrower Frontend use: `sudo systemctl restart -u borrower_frontend`
 
 *note:* you can also use the old initd syntax since initd passes through to systemd
 on centos, e.g. `sudo service borrower_frontend start`
@@ -347,8 +291,7 @@ vagrant@dev-vm > cd ~/development/borrower_frontend
 vagrant@dev-vm > mkvirtualenv borrower_frontend
 vagrant@dev-vm > pip install -r requirements.txt
 vagrant@dev-vm > pip install -r requirements_test.txt
-vagrant@dev-vm >
-vagrant@dev-vm > #Do some work
+#Do some work
 vagrant@dev-vm > python tests.py
 ...........................
 ok
@@ -361,12 +304,12 @@ vagrant@dev-vm > sudo service borrower_frontend stop
 ```
 
 Since the Borrower Frontend has an nginx config that expects it to be running on
-port `9000`, I can now start my version bound to the same port:
+port `9020`, I can now start my version bound to the same port:
 
 ```
 vagrant@dev-vm > cd ~/development/borrower_frontend
 vagrant@dev-vm > workon borrower_frontend
-vagrant@dev-vm > python run.py runserver --host 0.0.0.0 --port 9000
+vagrant@dev-vm > python run.py runserver --host 0.0.0.0 --port 9020
 ```
 
 Now my changes are available on http://borrower_frontend.dev.service.gov.uk and
@@ -380,7 +323,7 @@ vagrant@dev-vm > ./run_tests.sh
 ### Accessing apps from your browser
 
 The Dev VM is available on IP `10.10.10.10`. If you have a flask app running on
-port `9000` then you can access it by typing `http://10.10.10.10:9000` in to your
+port `9020` then you can access it by typing `http://10.10.10.10:9020` in to your
 browser. (Note the `http` is important as Chrome and Safari will think you want
 to search without it).
 
@@ -391,7 +334,7 @@ just run:
 > vagrant dns --install
 ```
 
-Now you can type `vm.dev.service.gov.uk:9000` in to your browser. Any subdomain
+Now you can type `vm.dev.service.gov.uk:9020` in to your browser. Any subdomain
 on `*dev.service.gov.uk` will resolve to the VM so this can be useful for
 having multiple apps running e.g. `frontend-dev.service.gov.uk`,
 `api.dev.service.gov.uk`, `my.super.long.domain.dev.service.gov.uk` will all
@@ -402,39 +345,35 @@ resolve to the VM.
 To pull in the "real" version of an app (i.e. what is currently deployed on
 master) you can use the same deployment code the environment uses.
 
-For example to pull in the Charges Borrower Frontend:
+For example to pull in the DM Borrower Frontend:
 
 1. Add the following to the Puppetfile in this repo
-
-```
-mod 'charges/borrower_frontend',
-  :git  => 'git://github.com:LandRegistry/charges-borrower-frontend',
-  :path => 'puppet/borrower_frontend'
-```
+	```
+	mod 'LandRegistry/borrower_frontend',
+	:git  => 'git://github.com:LandRegistry/dm-borrower-frontend',
+	:path => 'puppet/borrower_frontend'
+	```
 
 2. Update librarian-puppet to pull in the new module
-
-```
-> librarian-puppet update
-```
+	```
+	> librarian-puppet update
+	```
 
 3. Include the module in `manifests/site.pp`
+	```
+	node default {
+	  require ::standard_env
 
-```
-node default {
-  require ::standard_env
+	  include ::borrower_frontend
 
-  include ::borrower_frontend
-
-  ...
-}
-```
+	  ...
+	}
+	```
 
 4. Reprovision the VM
-
-```
-> vagrant provision
-```
+	```
+	> vagrant provision
+	```
 
 The Borrower Frontend will now be deployed in your VM and available on it's
 default port (8000) at `dev.service.gov.uk:8000`.
@@ -447,20 +386,23 @@ directly from any ssh connection:
 
 ```
 > vagrant ssh
-vagrant@dev-vm > psql verifudge
+vagrant@dev-vm > psql deed_api
 psql (9.4.4)
 Type "help" for help.
 
-verifudge=>
-verifudge=> \dt
-             List of relations
- Schema |      Name       | Type  |  Owner  
---------+-----------------+-------+---------
- public | alembic_version | table | vagrant
- public | identity        | table | vagrant
-(2 rows)
+deed_api=>
+deed_api=> \dt
 
-verifudge=> \q
+List of relations
+Schema |       Name        | Type  |  Owner
+--------+-------------------+-------+---------
+public | alembic_version   | table | vagrant
+public | borrower          | table | vagrant
+public | deed              | table | vagrant
+public | mortgage_document | table | vagrant
+(4 rows)
+
+deed_api=> \q
 vagrant@dev-vm > exit
 >
 ```
@@ -488,14 +430,14 @@ postgres@dev-vm >
 
 Drop or create your DB:
 ```
-postgres@dev-vm > dropdb verifudge
-postgres@dev-vm > createdb -O vagrant verifudge
+postgres@dev-vm > dropdb deed
+postgres@dev-vm > createdb -O vagrant deed
 ```
 (note: the `-O vagrant` is important as that's what lets our apps own their DB)
 
 **Puppet**
 
-In [manifests/site.pp](https://github.com/LandRegistry/dev-vm/blob/master/manifests/site.pp)
+In [manifests/site.pp](https://github.com/LandRegistry/dm-dev-env/blob/master/manifests/site.pp)
 add a postgres declaration:
 ```puppet
 standard_env::db::postgres { 'my-awesome-db':
@@ -527,7 +469,7 @@ module fetches.
 
 #### Deploying a different version of an apps Puppet module
 
-When testing a change made to a Puppet module it's a importan to deploy it to
+When testing a change made to a Puppet module it's a important to deploy it to
 the Dev VM first to see that it works. There are two ways to do this:
 
 **Deploy a local version**
@@ -539,10 +481,10 @@ on disk:
 
 ```ruby
 mod 'LandRegistry/borrower_frontend',
-    path: '../borrower-frontend/puppet/borrower_frontend'
+    path: '../dm-borrower-frontend/puppet/borrower_frontend'
 ```
 
-This will tell Librarian-Puppet to look in `../borrower-frontend/puppet/borrower_frontend`
+This will tell Librarian-Puppet to look in `../dm-borrower-frontend/puppet/borrower_frontend`
 for the puppet module.
 
 **Deploy a branch**
@@ -553,7 +495,7 @@ to test out someones pull request before merging it, you can modify the
 
 ```ruby
 mod 'LandRegistry/borrower_frontend',
-    git: 'git://github.com/LandRegistry/charges-borrower-frontend.git',
+    git: 'git://github.com/LandRegistry/dm-borrower-frontend.git',
     ref: 'my-awesome-feature',
     path: 'puppet/borrower_frontend'
 ```
@@ -573,7 +515,7 @@ In [the `hiera/vagrant.yaml` file](#the-hieravagrantyaml-file) you can override
 the default value of any class parameters. Each app provides a `branch_or_revision`
 parameter, which tells it which branch to checkout when deploying. By default
 this is set to `master`. For example the [branch_or_revision parameter of the
-Case Api](https://github.com/LandRegistry/charges-case-api/blob/master/puppet/case_api/manifests/init.pp#L6)
+Deed Api](https://github.com/LandRegistry/dm-deed-api/blob/master/puppet/deed_api/manifests/init.pp#L6)
 
 **Examples:**
 
@@ -584,12 +526,12 @@ Deploy the version of the Borrower Frontend found on the `my-awesome-feature`
 branch.
 
 ```ruby
-::case_api::branch_or_revision: '36989ac'
+::deed_api::branch_or_revision: '6a10045'
 ```
-Deploy the version of the Case Api found at git commit [`36989ac`](https://github.com/LandRegistry/charges-case-api/commit/37294e036989ac25e491b31479e225939b0aaae6).
+Deploy the version of the Deed Api found at git commit [`6a10045`](https://github.com/LandRegistry/dm-deed-api/commit/6a10045125563b7f68546aa4e2203ae87cca77ec).
 
 To properly understand the different parameters you can change have a look at
-an apps `manifests/init.pp`, for example the [Borrower Frontends `init.pp`](https://github.com/LandRegistry/charges-borrower-frontend/blob/master/puppet/borrower_frontend/manifests/init.pp)
+an apps `manifests/init.pp`, for example the [Borrower Frontends `init.pp`](https://github.com/LandRegistry/dm-borrower-frontend/blob/master/puppet/borrower_frontend/manifests/init.pp)
 
 ## Anatomy of this repo
 
@@ -602,7 +544,7 @@ declaration is:
 
 ```ruby
 mod 'LandRegistry/borrower_frontend',
-    git: 'git://github.com/LandRegistry/charges-borrower-frontend',
+    git: 'git://github.com/LandRegistry/dm-borrower-frontend',
     ref: 'master',
     path: 'puppet/borrower_frontend'
 ```
@@ -618,7 +560,7 @@ the puppet code exists in, e.g. if my puppet module is in `/foo` then I need to
 name the module `mod MyCompany/foo`.
 
 ```ruby
-    git: 'git://github.com/LandRegistry/charges-borrower-frontend',
+    git: 'git://github.com/LandRegistry/dm-borrower-frontend',
 ```
 
 Tell Librarian-Puppet where to find the repo that contains the module. This is
@@ -697,13 +639,13 @@ indicate that all instances of `foo` should set `bar` to the new value.
 ```
 Set the Borrower Frontends port to `9001`.
 ```
-::case_api::branch_or_revision: 'my-awesome-new-feature'
+::deed_api::branch_or_revision: 'my-awesome-new-feature'
 ```
-Tell the Case API to [deploy the code on `my-awesome-new-feature` branch](#deploy-a-different-version-of-an-app).
+Tell the Deed API to [deploy the code on `my-awesome-new-feature` branch](#deploy-a-different-version-of-an-app).
 
 ## Using for your own development
 
-This VM was mostly built for the Charges Team but we would like to support
+This VM was mostly built for the Digital Mortgage Team but we would like to support
 anyone else making use of it. When using it please keep app specific code
 out of the master branch. Instead make those changes in that apps puppet module.
 
