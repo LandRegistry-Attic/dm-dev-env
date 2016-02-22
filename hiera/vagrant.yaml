@@ -4,6 +4,7 @@
 # e.g. To switch the borrower_frontend to deploy a specific branch:
 #
 #
-borrower_frontend::branch_or_revision: 'develop'
-deed_api::branch_or_revision: 'develop'
+borrower_frontend::branch_or_revision: 'us146b-2-implement-auth'
+deed_api::branch_or_revision: 'us146b-2-implement-auth'
 esec_client::branch_or_revision: 'develop'
+webseal_proxy::branch_or_revision: 'master'
