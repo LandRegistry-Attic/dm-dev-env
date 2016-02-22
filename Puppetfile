@@ -5,12 +5,12 @@ mod 'LandRegistry/standard_env',
 
 mod 'LandRegistry/deed_api',
         git: 'git://github.com/LandRegistry/dm-deed-api',
-        ref: 'us146b-2-implement-auth',
+        ref: 'develop',
         path: 'puppet/deed_api'
 
 mod 'LandRegistry/borrower_frontend',
         git: 'git://github.com/LandRegistry/dm-borrower-frontend',
-        ref: 'us146b-2-implement-auth',
+        ref: 'develop',
         path: 'puppet/borrower_frontend'
 
 mod 'LandRegistry/esec_client',
