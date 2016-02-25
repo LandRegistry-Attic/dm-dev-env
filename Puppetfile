@@ -22,3 +22,4 @@ mod 'LandRegistry/webseal_proxy',
         git: 'git@github.com:LandRegistry/dm-webseal-proxy.git',
         ref: 'master',
         path: 'puppet/webseal_proxy'
+

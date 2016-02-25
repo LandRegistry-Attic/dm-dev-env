@@ -2,4 +2,5 @@
 .librarian
 .tmp
 *.lock
-/modules
+/modules/*
+!/modules/akuma
