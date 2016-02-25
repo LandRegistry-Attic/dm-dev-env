@@ -17,3 +17,8 @@ mod 'LandRegistry/esec_client',
         git: 'git@github.com:LandRegistry/dm-esec-client.git',
         ref: 'develop',
         path: 'puppet/esec_client'
+
+mod 'LandRegistry/webseal_proxy',
+        git: 'git@github.com:LandRegistry/dm-webseal-proxy.git',
+        ref: 'master',
+        path: 'puppet/webseal_proxy'

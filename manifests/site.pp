@@ -21,6 +21,7 @@ node default {
   include ::deed_api
   include ::borrower_frontend
   include ::esec_client
+  include ::webseal_proxy
 
   service { 'firewalld':
     ensure => 'stopped',
