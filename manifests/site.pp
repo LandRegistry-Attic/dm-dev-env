@@ -27,4 +27,10 @@ node default {
   service { 'firewalld':
     ensure => 'stopped',
   }
+
+# create a directory
+file { '/opt/logs':
+  ensure => 'directory',
+  mode   => '0777',
+}
 }
