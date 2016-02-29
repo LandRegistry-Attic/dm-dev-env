@@ -18,11 +18,11 @@ if versioncmp($::puppetversion,'3.6.1') >= 0 {
 node default {
   require ::standard_env
   include ::standard_env::tools::cucumber
-  include ::akuma
   include ::esec_client
   include ::webseal_proxy
   include ::deed_api
   include ::borrower_frontend
+  include ::akuma
 
   service { 'firewalld':
     ensure => 'stopped',

@@ -25,6 +25,6 @@ mod 'LandRegistry/webseal_proxy',
 
 mod 'LandRegistry/cf-api-stub',
         git: 'git@github.com:LandRegistry/cf-api-stub.git',
-        ref: 'master',
+        ref: 'puppetise-cf-repo',
         path: 'puppet/akuma'
 
