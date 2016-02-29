@@ -23,3 +23,8 @@ mod 'LandRegistry/webseal_proxy',
         ref: 'master',
         path: 'puppet/webseal_proxy'
 
+mod 'LandRegistry/cf-api-stub',
+        git: 'git@github.com:LandRegistry/cf-api-stub.git',
+        ref: 'master',
+        path: 'puppet/stub'
+
