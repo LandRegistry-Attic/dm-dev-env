@@ -22,7 +22,7 @@ node default {
   include ::webseal_proxy
   include ::deed_api
   include ::borrower_frontend
-  include ::akuma
+  include ::stub
 
   service { 'firewalld':
     ensure => 'stopped',
