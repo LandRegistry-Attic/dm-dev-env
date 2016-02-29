@@ -195,8 +195,19 @@ reading logs, you can through [systemd and journalctl](#controlling-apps).
  Development Host    | http://esec_client.dev.service.gov.uk
  Code on VM          | /opt/esec_client
  Default port        | 0.0.0.0:9040
+ 
+ ### E-Security Client
 
- > NOTE: In order to use E-Security Client which is a private repository you will need to link you machines ssh client with the VM's ssh client.
+ Piece               | Location
+---------------------|------------------------------------------------------------------------------------
+ App name            | stub (Akuma)
+ Code                | [cf-api-stub](https://github.com/LandRegistry/cf-api-stub)
+ Infrastructure code | [cf-api-stub/puppet/stub](https://github.com/LandRegistry/cf-api-stub/tree/master/puppet/stub)
+ Development Host    | http://stub.dev.service.gov.uk
+ Code on VM          | /opt/stub
+ Default port        | 0.0.0.0:5055
+
+ > NOTE: In order to use E-Security Client and Akuma which is a private repository you will need to link you machines ssh client with the VM's ssh client.
  1. You will need to have been given access to the [repository](github.com/LandRegistry/dm-deed-api)
  2. You can do this by running ```ssh-add``` on your local machine, this will pick up you id_rsa that you added to github for secure connections and add it to the ssh-agent.
 
