@@ -4,7 +4,7 @@ class akuma (
     $host = '0.0.0.0',
     $source = 'git@github.com:LandRegistry/cf-api-stub.git',
     $branch_or_revision = 'master',
-    $subdomain = 'dm-akuma',
+    $subdomain = undef,
     $domain = undef,
     $owner = 'vagrant',
     $group = 'vagrant',
