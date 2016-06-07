@@ -23,6 +23,7 @@ node default {
   include ::deed_api
   include ::borrower_frontend
   include ::stub
+  include ::title_adaptor
 
   service { 'firewalld':
     ensure => 'stopped',
