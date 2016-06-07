@@ -22,6 +22,7 @@ node default {
   include ::webseal_proxy
   include ::deed_api
   include ::borrower_frontend
+  include ::register_adapter_stub
   include ::stub
 
   service { 'firewalld':
