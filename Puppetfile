@@ -33,4 +33,8 @@ mod 'LandRegistry/register_adapter_stub',
         ref: 'puppetise',
         path: 'puppet/register_adapter_stub'
 
+mod 'LandRegistry/title_adaptor',
+        git: 'git@github.com:LandRegistry/dm-title-adaptor-stub.git',
+        ref: 'develop',
+        path: 'puppet/title_adaptor'
 

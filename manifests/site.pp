@@ -24,6 +24,7 @@ node default {
   include ::borrower_frontend
   include ::register_adapter_stub
   include ::stub
+  include ::title_adaptor
 
   service { 'firewalld':
     ensure => 'stopped',
