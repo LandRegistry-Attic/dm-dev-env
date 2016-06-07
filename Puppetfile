@@ -3,6 +3,11 @@ forge 'https://forgeapi.puppetlabs.com'
 mod 'LandRegistry/standard_env',
     git: 'git://github.com/LandRegistry/standard-env'
 
+mod 'LandRegistry/register_adapter_stub',
+        git: 'git@github.com:LandRegistry/dm-register-adapter-stub.git',
+        ref: 'puppetise',
+        path: 'puppet/register_adapter_stub'
+
 mod 'LandRegistry/deed_api',
         git: 'git://github.com/LandRegistry/dm-deed-api',
         ref: 'develop',
@@ -27,4 +32,6 @@ mod 'LandRegistry/cf-api-stub',
         git: 'git@github.com:LandRegistry/cf-api-stub.git',
         ref: 'master',
         path: 'puppet/stub'
+
+
 
