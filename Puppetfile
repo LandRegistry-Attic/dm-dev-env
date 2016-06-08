@@ -28,7 +28,13 @@ mod 'LandRegistry/cf-api-stub',
         ref: 'master',
         path: 'puppet/stub'
 
+mod 'LandRegistry/register_adapter_stub',
+        git: 'git@github.com:LandRegistry/dm-register-adapter-stub.git',
+        ref: 'develop',
+        path: 'puppet/register_adapter_stub'
+
 mod 'LandRegistry/title_adaptor',
         git: 'git@github.com:LandRegistry/dm-title-adaptor-stub.git',
         ref: 'develop',
         path: 'puppet/title_adaptor'
+
